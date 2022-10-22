@@ -1,0 +1,58 @@
+.card {
+    position: relative;
+    transition: .5s;
+    background-color: rgba(240, 248, 255, 0.547);
+}
+.card:hover .box-img{
+    overflow: hidden;
+}
+.card.card-img{
+    transition: transform .5s ease;
+}
+
+.card>.active-btn {
+    opacity: 0;
+    position: absolute;
+    top: 72%;
+    left: 34%;
+    transition: .5s;
+}
+
+.card:hover .active-btn {
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    transition: .5s;
+}
+
+.card .card-body{
+    background-color: rgba(240, 248, 255, 0.373);
+}
+/*.card .card-body .card-title{*/
+/*    display: inline-block;*/
+/*    max-width: 80%;*/
+/*    height: 1.5em;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    white-space: nowrap;*/
+/*}*/
+.card:hover .card-img{
+    opacity: 0.7;
+    transform: scale(1.2);
+    transition: .5s;
+}
+
+.card>.active-btn>button {
+    font-size: 30px;
+    border: 2px #d3994f solid;
+    background: rgba(255, 255, 255, 0.827);
+    transform: skewX(-2deg);
+    z-index: 100;
+    transition: .5s;
+}
+.card>.active-btn>button:hover {
+    background-color: #d3994f;
+    border: none;
+    transition: .5s;
+}

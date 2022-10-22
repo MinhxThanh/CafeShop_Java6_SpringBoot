@@ -1,0 +1,69 @@
+<style>
+    body {
+        background-color: #f5f8ff;
+    }
+
+    input[type="file"] {
+        display: none
+    }
+
+    label {
+        display: block;
+        position: relative;
+        background-color: #025bee;
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+        width: 300px;
+        padding: 18px 0;
+        margin: auto;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+
+    #images {
+        width: 90%;
+        position: relative;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    figure {
+        width: 45%;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    figcaption {
+        text-align: center;
+        font-size: 2.4vmin;
+        margin-top: 0.5vmin;
+    }
+</style>
+<div class="container bg-white p-5 rounded-5 col-9 mt-5 shadow">
+    <input ng-model="form.product.id" class="bg-white border-0 border-bottom fs-5 d-none" type="text" value="Product Name" disabled>
+    <input ng-model="ProductName" class="bg-white border-0 border-bottom fs-5" type="text" value="Product Name" disabled>
+    <input type="file" id="file-input" accept="image/png, image/jpeg"
+          onchange="angular.element(this).scope().imageChanged(this.files)" > <!-- multiple-->
+    <label for="file-input">
+        <i class="fas fa-upload"></i> &nbsp; Choose A Photo
+    </label>
+    <p id="num-of-files" class="text-center mt-4">No Files Chosen</p>
+    <div id="images">
+        <figure ng-if="listImageDescribeByProductID != null" ng-repeat="i in listImageDescribeByProductID" class="position-relative pip">
+            <img src="/assets/images/{{i.image}}">
+            <figcaption>{{i.image}}</figcaption>
+            <span ng-click="delete(i)" class="remove btn-close position-absolute top-0 start-100 translate-middle"></span>
+        </figure>
+    </div>
+    <div class="card-footer text-muted text-center mt-5">
+        <button ng-click="create()" class="btn btn-outline-primary px-5 py-3">Create</button>
+        <button ng-click="reset()" class="btn btn-outline-info px-5 py-3">Reset</button>
+    </div>
+</div>

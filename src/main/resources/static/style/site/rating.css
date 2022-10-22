@@ -1,0 +1,88 @@
+.rate_product{
+    position: relative;
+}
+.rating {
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    opacity: 0;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #ffd600;
+    cursor: pointer;
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important;
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1;
+}
+
+.rating:hover > input:checked ~ label:before {
+    opacity: 0.4;
+}
+
+.rating > .checked ~ label:before {
+    opacity: 1;
+}
+
+.rating:hover > .checked ~ label:before {
+    opacity: 0.4;
+}
+
+
+.rate_result {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rate_result > input {
+    display: none;
+}
+
+.rate_result > label {
+    position: relative;
+    width: 1em;
+    font-size: 30px;
+    font-weight: 300;
+    color: #ffd600;
+    cursor: pointer;
+}
+
+.rate_result > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0;
+}
+.rate_result > .checked ~ label:before {
+    opacity: 1;
+}
+
+
+.rate_product:hover .rating{
+    opacity: 1;
+    transition: .2s;
+}
+.rate_product:hover .rate_result{
+    transition: .2s;
+    opacity: 0;
+}

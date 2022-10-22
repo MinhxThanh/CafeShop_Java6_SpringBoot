@@ -1,0 +1,61 @@
+<div xmlns:th="http://www.thymeleaf.org" >
+    <div class="header-content" th:fragment="headerContent">
+        <div class="d-flex" id="header-btn-content">
+            <button class="btn-en bg-dark text-white border"><img src="/assets/images/us.webp" alt="flag us" width="18%">
+                ENGLISH</button>
+            <button class="btn-vi bg-dark text-white border"><img src="/assets/images/vn.webp" alt="flag vn" width="18%">
+                VIETNAMESE</button>
+        </div>
+    </div>
+    <nav th:fragment="navbar">
+        <div class="logo">
+            <img src="/assets/images/logo.png" alt="logo">
+        </div>
+        <ul>
+            <li class="nav_menu_ul_li_item">
+                <a th:class="${#strings.equals(pageTitle, 'Home')} ? active : ''" th:href="@{/home/index}">Home</a>
+            </li>
+            <li class="nav_menu_ul_li_item">
+                <a th:class="${#strings.equals(pageTitle, 'Shop Products') or #strings.equals(pageTitle, 'Product Detail')} ? active : ''" th:href="@{/product/list}">Shop</a>
+            </li>
+            <li class="nav_menu_ul_li_item">
+                <a th:class="${#strings.equals(pageTitle,'About Us')} ? active : ''" th:href="@{/about}">About</a>
+            </li>
+            <li class="nav_menu_ul_li_item">
+                <a th:class="${#strings.equals(pageTitle, 'Intro Product')} ? active : ''" th:href="@{/product-intro}">Products</a>
+            </li>
+            <li class="nav_menu_ul_li_item">
+                <a th:class="${#strings.equals(pageTitle, 'Store')} ? active : ''" th:href="@{/store}">Store</a>
+            </li>
+            <th:block th:if="${#request.remoteUser}">
+                <li class="nav_menu_ul_li_item" data-label1="new">
+                    <a th:class="${#strings.equals(pageTitle, 'Your Orders')} ? active : ''" th:href="@{/order/list}">Your Orders</a>
+                </li>
+                <li th:if="${#request.isUserInRole('ADMIN') or #request.isUserInRole('MANAGE')}">
+                    <a th:href="@{/admin/home/index}">Administration</a>
+                </li>
+            </th:block>
+
+        </ul>
+        <div class="left_nav ">
+            <ul>
+                <li class="nav_menu_ul_li_item">
+                    <a class="nav_menu_ul_link position-relative" th:href="@{/cart/view}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="badge_nofi badge rounded-pill">
+                            {{cart.count}}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav_menu_ul_li_item"><a class="nav_menu_ul_link " href="#"><i class="fa-regular fa-heart"></i></a></li>
+                <li th:if="${#request.remoteUser}"  class="nav_menu_ul_li_item">
+                    <a class="nav_menu_ul_link " th:href="@{/security/logout}">Sign Out</a>
+                </li>
+                <li th:unless="${#request.remoteUser}"  class="nav_menu_ul_li_item">
+                    <a th:class="${#strings.equals(pageTitle, 'Sign In')} ? active : ''" th:href="@{/security/login/form}">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+</div>

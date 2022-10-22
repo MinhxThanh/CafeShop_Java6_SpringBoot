@@ -1,0 +1,92 @@
+<div class="col-8 tab-pane fade show active m-auto mt-2" id="nav-videoEditing" role="tabpanel" aria-labelledby="nav-videoEditing-tab">
+    <form>
+        <div class="card my05">
+            <h2 class="text-center my-4">Product Edit Form</h2>
+            <div class="my-2 mx-5">
+                <div class="alert alert-success" role="alert" ng-if="message != ''">
+                    <i>{{message}}</i>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-if="error != ''">
+                    <i>{{error}}</i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+<!--                    <div class="col-4">-->
+<!--                        <div class="boder p-1">-->
+<!--                            <img id="blah" src="/assets/images/{{form.image}}"  class="img-fluid img-thumbnail rounded"/>-->
+<!--                            <div class="mb-3">-->
+<!--                                <label for="ImageMedias" class="form-label">Image Product</label>-->
+<!--                                <input class="form-control" type="file" id="ImageMedias" accept="image/*" onchange="angular.element(this).scope().imageChanged(this.files)">-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                          <script type="text/javascript">&ndash;&gt;-->
+<!--&lt;!&ndash;                                function preview() {&ndash;&gt;-->
+<!--&lt;!&ndash;                                    blah.src = URL.createObjectURL(event.target.files[0]);&ndash;&gt;-->
+<!--&lt;!&ndash;                                }&ndash;&gt;-->
+<!--&lt;!&ndash;                          </script>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="col-8 m-auto">
+                        <div class="form-group">
+                            <label for="videoTitle">Name</label>
+                            <input ng-model="form.name" type="text" class="form-control" id="videoTitle" aria-describedby="videoTitleHid" placeholder="Name Product..">
+                        </div>
+                        <div class="form-group">
+                            <label for="otherName">Price</label>
+                            <input ng-model="form.price" type="number" class="form-control " id="otherName" aria-describedby="otherNameHid" placeholder="Price..">
+                        </div>
+                        <div class="form-group">
+                            <label for="otherName">Create Date</label>
+                            <input ng-model="form.createDate" type="date" class="form-control " aria-describedby="otherNameHid">
+                        </div>
+                        <div class="form-group ">
+                            <label for="otherName">Category {{listCategories.id}}</label>
+                            <select multiple="multiple" ng-model="listCategories.id" ng-options="c.id as c.name for c in categories"
+                                    class="form-control" id="selectCategories" ng-change="updateSelect(listCategories)">
+                            </select>
+                            <ul class="d-flex px-0" ng-if="listCategoriesChose != null">
+                                <li ng-repeat="cate in listCategoriesChose" class="rounded list-group-item p-0 m-1" style="background-color: #e4e4e4; border: 1px rgb(88, 88, 88) solid;">
+                                    <button ng-click="deleteCategory(cate.id, form.id)" class="rounded-start border-0" style="border-right: 2px black solid !important;"><span>x</span></button>
+                                    <span class="mx-2">{{cate.name}}</span>
+                                </li>
+                            </ul>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#selectCategories').select2({
+                                        placeholder: 'Please select category!',
+                                        multiple: true
+                                    })
+                                })
+                            </script>
+                        </div>
+                        <div class="form-check mt-3">
+                            <label>Available: </label>
+                            <div class="form-check form-check-inline">
+                                <input ng-model="form.available" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                       ng-value="false" checked>
+                                <label class="form-check-label" for="inlineRadio1">No</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input ng-model="form.available" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                       ng-value="true">
+                                <label class="form-check-label" for="inlineRadio2">Yes</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                            <textarea ng-model="form.description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer text-muted text-center">
+                <button ng-click="create()" class="btn btn-outline-primary">Create</button>
+                <button ng-click="update()" class="btn btn-outline-success">Update</button>
+                <button ng-click="delete(form)" class="btn btn-outline-danger">Delete</button>
+                <button ng-click="reset()" class="btn btn-outline-info">Reset</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::#main})}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div id="main">
+        <style>
+
+            .button {
+                display: inline-block;
+                background: #0e8ce4;
+                border-radius: 5px;
+                height: 48px;
+                -webkit-transition: all 200ms ease;
+                -moz-transition: all 200ms ease;
+                -ms-transition: all 200ms ease;
+                -o-transition: all 200ms ease;
+                transition: all 200ms ease
+            }
+
+            .button a {
+                display: block;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 48px;
+                color: #FFFFFF;
+                padding-left: 35px;
+                padding-right: 35px
+            }
+
+            .button:hover {
+                opacity: 0.8
+            }
+
+            .cart_section {
+                width: 100%;
+                padding-top: 93px;
+                padding-bottom: 111px
+            }
+
+            .cart_title {
+                font-size: 30px;
+                font-weight: 500
+            }
+
+            .cart_items {
+                margin-top: 8px
+            }
+
+            .cart_list {
+                border: solid 1px #e8e8e8;
+                box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+                background-color: #fff
+            }
+
+            .cart_item {
+                width: 100%;
+                padding: 15px;
+                padding-right: 46px
+            }
+
+            .cart_item_image {
+                width: 133px;
+                height: 133px;
+                float: left
+            }
+
+            .cart_item_image img {
+                max-width: 100%
+            }
+
+            .cart_item_info {
+                width: calc(100% - 133px);
+                float: left;
+                padding-top: 18px
+            }
+
+            .cart_item_name {
+                margin-left: 7.53%
+            }
+
+            .cart_item_title {
+                font-size: 14px;
+                font-weight: 400;
+                color: rgba(0, 0, 0, 0.5)
+            }
+
+            .cart_item_text {
+                font-size: 18px;
+                margin-top: 35px
+            }
+
+            .cart_item_text span {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin-right: 11px;
+                -webkit-transform: translateY(4px);
+                -moz-transform: translateY(4px);
+                -ms-transform: translateY(4px);
+                -o-transform: translateY(4px);
+                transform: translateY(4px)
+            }
+
+            .cart_item_price {
+                text-align: right
+            }
+
+            .cart_item_total {
+                text-align: right
+            }
+
+            .order_total {
+                width: 100%;
+                height: 60px;
+                margin-top: 30px;
+                border: solid 1px #e8e8e8;
+                box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+                padding-right: 46px;
+                padding-left: 15px;
+                background-color: #fff
+            }
+
+            .order_total_title {
+                display: inline-block;
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.5);
+                line-height: 60px
+            }
+
+            .order_total_amount {
+                display: inline-block;
+                font-size: 18px;
+                font-weight: 500;
+                margin-left: 26px;
+                line-height: 60px
+            }
+
+            .cart_buttons {
+                margin-top: 60px;
+                text-align: right
+            }
+
+            .cart_button_clear {
+                display: inline-block;
+                border: none;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 48px;
+                color: rgba(0, 0, 0, 0.5);
+                background: #FFFFFF;
+                border: solid 1px #b2b2b2;
+                padding-left: 35px;
+                padding-right: 35px;
+                outline: none;
+                cursor: pointer;
+                margin-right: 26px
+            }
+
+            .cart_button_clear:hover {
+                border-color: #0e8ce4;
+                color: #0e8ce4
+            }
+
+            .cart_button_checkout {
+                display: inline-block;
+                border: none;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 48px;
+                color: #FFFFFF;
+                padding-left: 35px;
+                padding-right: 35px;
+                outline: none;
+                cursor: pointer;
+                vertical-align: top
+            }
+        </style>
+        <div class="cart_section">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-10 m-auto offset-lg-1">
+
+                        <div class="cart_container">
+                            <div th:fragment="shopping_cart_title" class="cart_title">Shopping Cart<small> ({{cart.count}} items in your cart) </small></div>
+                            <div class="row cart_items" ng-repeat="item in cart.items" th:fragment="shopping_cart_body">
+                                <ul class="cart_list w-100">
+                                    <li class="cart_item clearfix">
+                                        <div class="cart_item_image row">
+                                            <img src="/assets/images/{{item.image}}" alt="">
+                                        </div>
+                                        <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                            <div class="cart_item_name cart_info_col">
+                                                <div class="cart_item_title">Name</div>
+                                                <div class="cart_item_text"
+                                                     style="display: inline-block;
+                                                        width: 10em;
+                                                        overflow: hidden;
+                                                        white-space: nowrap;
+                                                        text-overflow: ellipsis;">{{item.name}}
+                                                </div>
+                                            </div>
+                                            <div class="cart_item_price cart_info_col">
+                                                <div class="cart_item_title">Price</div>
+                                                <div class="cart_item_text">${{item.price}}</div>
+                                            </div>
+                                            <div class="cart_item_quantity cart_info_col">
+                                                <div class="cart_item_title">Quantity</div>
+                                                <input ng-change="cart.saveToLocalStorage()" ng-model="item.quantity" class="cart_item_text" type="number" min="1" style="max-width: 55px">
+                                            </div>
+                                            <div class="cart_item_price cart_info_col text-center">
+                                                <div class="cart_item_title">Total</div>
+                                                <div class="cart_item_text">${{item.quantity*item.price | number:2}}</div>
+                                            </div>
+                                            <div class="cart_item_total cart_info_col">
+                                                <div class="cart_item_title">Delete</div>
+                                                <button ng-click="cart.delete(item.id)" class="cart_item_text">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row order_total">
+                                <div class="col-8 mt-2 order_total_btn_clear">
+                                    <button ng-click="cart.clear()" class="btn btn-outline-danger"><i class="fa-solid fa-trash-arrow-up"></i> Clear</button>
+                                </div>
+                                <div class="col-4 order_total_content text-md-right">
+                                    <div class="order_total_title">Order Total:</div>
+                                    <div class="order_total_amount">${{cart.amount | number:2}}</div>
+                                </div>
+                            </div>
+                            <div class="cart_buttons">
+                                <a th:href="@{/product/list}" class="button cart_button_clear">Continue Shopping</a>
+                                <a  th:href="@{/order/checkout}" type="button" class="button cart_button_checkout">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+</html>

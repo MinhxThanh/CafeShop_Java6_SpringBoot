@@ -1,0 +1,44 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Date</th>
+        <th scope="col">Image</th>
+        <th scope="col">Category</th>
+        <th scope="col">Available</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="p in items | limitTo: pager.size : pager.page">
+            <th scope="row">{{$index + 1}}</th>
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price | number:2}}</td>
+            <td>{{p.createDate | date:'dd-MM-yyyy'}}</td>
+            <td>{{p.image}}</td>
+            <td style="max-width: 200px">
+                <span ng-repeat="c in categoriesInProductList" ng-if="c.product.id == p.id" class="badge text-bg-primary mx-1">{{c.category.name}}</span>
+            </td>
+            <td>{{p.available?'Yes':'No'}}</td>
+            <td>
+                <button ng-click="edit(p)"><i class="fa-regular fa-pen-to-square"></i></button> -
+                <button ng-click="delete(p)"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" ng-click="pager.first()"><i class="fa-solid fa-backward-fast"></i> First</a></li>
+        <li class="page-item"><a class="page-link" ng-click="pager.prev()"><i class="fa-solid fa-backward-step"></i> Previous</a></li>
+        <li class="page-item">
+            <button class="btn btn-outline-info">{{pager.page + 1}} of {{pager.count}}</button>
+        </li>
+        <li class="page-item"><a class="page-link" ng-click="pager.next()"><i class="fa-solid fa-forward-step"></i> Next</a></li>
+        <li class="page-item"><a class="page-link" ng-click="pager.last()"><i class="fa-solid fa-forward-fast"></i> Last</a></li>
+    </ul>
+</nav>

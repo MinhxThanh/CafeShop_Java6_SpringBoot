@@ -1,0 +1,32 @@
+
+/*Animation angularjs*/
+.body.ng-enter{
+    transition: 1s linear all;
+    opacity: 0;
+}
+.body.ng-enter.ng-enter-active{
+    opacity: 1;
+}
+/*animation table add item*/
+table tbody tr.ng-enter{
+    transition: 0.5s linear all;
+    opacity: 0;
+    transform: translateY(30px);
+}
+table tbody tr.ng-enter.ng-enter-active{
+    opacity: 1;
+    transform: translateY(0);
+}
+/*animation table remove item*/
+table tbody{
+    overflow: hidden;
+}
+table tbody tr.ng-leave{
+    transition: 0.2s linear all;
+    opacity: 1;
+    transform: translateX(0);
+}
+table tbody tr.ng-enter.ng-enter-active{
+    opacity: 0;
+    transform: translateX(-100%);
+}
